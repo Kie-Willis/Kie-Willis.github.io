@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://Kie-Willis.github.io">
   <title>音频模块技术文档 | 原生态丶领跑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="音频模块技术文档前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_">
+  <meta name="description" content="前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_MCK PC6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="音频模块技术文档">
 <meta property="og:url" content="http://Kie-Willis.github.io/2018/04/16/音频模块技术文档/index.html">
 <meta property="og:site_name" content="原生态丶领跑">
-<meta property="og:description" content="音频模块技术文档前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_">
+<meta property="og:description" content="前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_MCK PC6">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-16T05:20:02.762Z">
+<meta property="og:updated_time" content="2018-04-16T05:26:25.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="音频模块技术文档">
-<meta name="twitter:description" content="音频模块技术文档前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_">
+<meta name="twitter:description" content="前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_MCK PC6">
   
     <link rel="alternative" href="/atom.xml" title="原生态丶领跑" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="音频模块技术文档"><a href="#音频模块技术文档" class="headerlink" title="音频模块技术文档"></a>音频模块技术文档</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文包括了音频模块从初始化到结束的全部实现原理。<br>实现的功能是指定播放事先录制好的音频。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文包括了音频模块从初始化到结束的全部实现原理。<br>实现的功能是指定播放事先录制好的音频。</p>
 <h3 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h3><h4 id="1-硬件连接方法："><a href="#1-硬件连接方法：" class="headerlink" title="1.硬件连接方法："></a>1.硬件连接方法：</h4><table>
 <thead>
 <tr>
