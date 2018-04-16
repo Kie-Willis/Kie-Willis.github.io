@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://Kie-Willis.github.io">
-  <title>Archives: 2018/4 | 原生态丶领跑</title>
+  <title>音频模块技术文档 | 原生态丶领跑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="雪山、川藏、麦理浩径">
-<meta property="og:type" content="website">
-<meta property="og:title" content="原生态丶领跑">
-<meta property="og:url" content="http://Kie-Willis.github.io/archives/2018/04/index.html">
+  <meta name="description" content="音频模块技术文档前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音频模块技术文档">
+<meta property="og:url" content="http://Kie-Willis.github.io/2018/04/16/音频模块技术文档/index.html">
 <meta property="og:site_name" content="原生态丶领跑">
-<meta property="og:description" content="雪山、川藏、麦理浩径">
+<meta property="og:description" content="音频模块技术文档前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-16T05:20:02.762Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原生态丶领跑">
-<meta name="twitter:description" content="雪山、川藏、麦理浩径">
+<meta name="twitter:title" content="音频模块技术文档">
+<meta name="twitter:description" content="音频模块技术文档前言本文包括了音频模块从初始化到结束的全部实现原理。实现的功能是指定播放事先录制好的音频。 接口说明1.硬件连接方法：   SD卡 主控板-SD卡 WM8978 主控板-WM8978     SDIO_D0 PC8 I2S_SD PB15   SDIO_D1 PC9 I2S_CK PB13   SDIO_D2 PC10 I2S_WS PB12   SDIO_D3 PC11 I2S_">
   
     <link rel="alternative" href="/atom.xml" title="原生态丶领跑" type="application/atom+xml">
   
@@ -157,103 +158,249 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-音频模块技术文档" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      音频模块技术文档
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/16/音频模块技术文档/" class="archive-article-date">
+
+        
+        <a href="/2018/04/16/音频模块技术文档/" class="archive-article-date">
   	<time datetime="2018-04-16T05:19:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/16/音频模块技术文档/">音频模块技术文档</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="音频模块技术文档"><a href="#音频模块技术文档" class="headerlink" title="音频模块技术文档"></a>音频模块技术文档</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文包括了音频模块从初始化到结束的全部实现原理。<br>实现的功能是指定播放事先录制好的音频。</p>
+<h3 id="接口说明"><a href="#接口说明" class="headerlink" title="接口说明"></a>接口说明</h3><h4 id="1-硬件连接方法："><a href="#1-硬件连接方法：" class="headerlink" title="1.硬件连接方法："></a>1.硬件连接方法：</h4><table>
+<thead>
+<tr>
+<th>SD卡</th>
+<th style="text-align:left">主控板-SD卡</th>
+<th>WM8978</th>
+<th style="text-align:left">主控板-WM8978</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SDIO_D0</td>
+<td style="text-align:left">PC8</td>
+<td>I2S_SD</td>
+<td style="text-align:left">PB15</td>
+</tr>
+<tr>
+<td>SDIO_D1</td>
+<td style="text-align:left">PC9</td>
+<td>I2S_CK</td>
+<td style="text-align:left">PB13</td>
+</tr>
+<tr>
+<td>SDIO_D2</td>
+<td style="text-align:left">PC10</td>
+<td>I2S_WS</td>
+<td style="text-align:left">PB12</td>
+</tr>
+<tr>
+<td>SDIO_D3</td>
+<td style="text-align:left">PC11</td>
+<td>I2S_MCK</td>
+<td style="text-align:left">PC6</td>
+</tr>
+<tr>
+<td>SDIO_CMD</td>
+<td style="text-align:left">PD2</td>
+<td>I2S_SD</td>
+<td style="text-align:left">PB15</td>
+</tr>
+<tr>
+<td>SDIO_CLK</td>
+<td style="text-align:left">PC12</td>
+<td>I2S_SDA</td>
+<td style="text-align:left">PB7</td>
+</tr>
+<tr>
+<td><strong>串口</strong></td>
+<td style="text-align:left"><strong>主控板-串口</strong></td>
+<td>I2S_SD</td>
+<td style="text-align:left">PB15</td>
+</tr>
+<tr>
+<td>USART_RX</td>
+<td style="text-align:left">PA10</td>
+<td>I2S_SCL</td>
+<td style="text-align:left">PB6</td>
+</tr>
+<tr>
+<td>USART_TX</td>
+<td style="text-align:left">PA9</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>SD卡：SDIO_D0——PC8，SDIO_D1——PC9，SDIO_D2——PC10，SDIO_D3——PC11，SDIO_CMD——PD2，SDIO_CLK——PC12<br>WM8978模块：I2S_SD——PB15，I2S_CK——PB13，I2S_WS——PB12，I2S_MCK——PC6，I2S_SD——PB15，I2S_SDA——PB7，I2S_SD——PB15，I2S_SCL——PB6</p>
+<h4 id="2-串口："><a href="#2-串口：" class="headerlink" title="2.串口："></a>2.串口：</h4><p>USART_RX——PA10，USART_TX——PA9<br>软件接口：除了初始化部分，直接调用本函数即可实现播放指定音频。<br>文末有关于在不事先录制音频的情况下播放音频的突发奇想。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>一、播放音频总体流程    1<br>二、.wav音频格式文件    1<br>三、MP3文件    2<br>四、播放音频详细流程    2<br>五、总流程    5<br>六、MP3串口调试    5<br>七、文件系统    6<br>八、SD卡：    6<br>九、初始化系统滴答定时器    7<br>十、初始化wm8978：    7<br>十一、WM8978 芯片    7<br>十二、I2S配置：    8<br>十三、关于实现实时播放任意音频的想法    8</p>
+<h3 id="一、播放音频总体流程"><a href="#一、播放音频总体流程" class="headerlink" title="一、播放音频总体流程"></a>一、播放音频总体流程</h3><p>SD卡首先在电脑端格式化为FAT32文件系统，拖入.MP3音频文件，然后SD卡与主控板通信，接口是SDIO接口，主控板首先在SD卡挂载文件系统，这样就可以读取SD卡中的文件。</p>
+<p>首先读取mp3文件的一小部分放在inbuff缓冲区中，然后定位inbuff缓冲区中的音频数据帧头，将帧头后面的部分内存转移到前面并且使得4字节对齐（要在inbuff缓冲区最前面补0~3个字节）然后在读取MP3文件的数据补充完整inbuff缓冲区。这个时候的缓冲区内容才可以送给解码库函数解码。而且！！！解码库函数一次只能解码一帧数据，所以不用担心送给解码器的inbuff缓冲区数据超过一帧数据！！！！</p>
+<p>然后将这个inbuff缓冲区的数据解码成PCM信号放在outbuffer[bufflag]缓冲区中（bufflag在DMA传输完成的时候进行切换）这样就使得在DMA传输第一个缓冲区的数据（给wm8978）的时候，CPU把数据放在第二个缓冲区，在DMA传输第二个缓冲区的数据的时候，CPU把数据放在第一个缓冲区。具体是解码库对inbuff缓冲区的数据解码出来的数据（也就是PCM信号）放在outbuffer[0]或者outbuffer[1]两个缓冲区中，具体如果DMA现在是在用outbuffer[0]传输给wm8978那就把解码数据放到outbuffer[1]，如果DMA现在是在用outbuffer[1]传输给wm8978那就把解码数据放到outbuffer[0].</p>
+<p>将MP3文件的每一帧数据解码成pcm信号，pcm信号通过I2S通信方式输出给wm8978芯片进行ADDA转换，处理完在耳机孔输出该音频数据。</p>
+<h3 id="二、-wav音频格式文件"><a href="#二、-wav音频格式文件" class="headerlink" title="二、.wav音频格式文件"></a>二、.wav音频格式文件</h3><p>它也符合RIFF文件规范：由不同数量的区块组成文件，每一个区块由标识符、SIZE和数据三个部分组成，SIZE为数据区字节长度，而标识符和SIZE都占4个字节，所以文件大小一共为SIZE+8个字节。然后区块内部不能再包含区块除了标识符为RIFF或者LIST才可以。.WAV格式标识码为WAVE（这个格式标识码貌似放在RIFF 区块的第三个部分也就是数据部分那里，根据wav文件格式结构图，不过这并不重要），在标识符为RIFF的区块中包含两个字区块，标识符分别为fmt（fmt区块用于表示音频数据的属性，包括编码方式、声道数目、采样频率、每个采样需要的 bit 数等等信息）和data（data 区块包含 WAVE 文件的数字化波形声音数据），还有另一个可选的fact区块（一般当 WAVE 文件由某些软件转化而成就包含 fact 区块）。<br>WAVE文件整体结构就是：标识码（“RIFF”）+数据大小+格式标识码（“WAVE”）+标识码（“fmt”）+fmt块数据大小+fmt数据+标识码（“fact”）+fact块数据大小+fact数据（这里的fact块是可选的）+标识码（“data”）+声音数据大小+声音数据。这个声音数据用PCM编码。<br>.wav的文件具体十六进制数据为:<br>52 49 46 46 F4 FE 83 01 57 41 56 45 66 6D 74 20 (从0000 0000地址~0000 0009地址，10个地址，一个地址对应一个字节也就是二个16进制数“52”就是2个16进制数（2位），写成2进制就是8位)<br>10 00 00 00 01 00 02 00 44 AC 00 00 10 B1 02 00（从0000 0010地址~0000 0019地址）<br>04 00 10 00 64 61 74 61 48 FE 83 01 00 00 00 00（从0000 0020地址~0000 0029地址）<br>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00（从0000 0030地址~0000 0039地址）<br>一开始的52 49 46 46，4个字节char类型，表示的是“RIFF”标识符，接下来的F4 FE 83 01，4个字节long int类型，表示文件长度为0x01 83 FE F4，要特别注意顺序！！！！接下  来的57 41 56 45，4个字节char类型是“WAVE”标识符，接下来的66 6D 74 20，是“fmt （最后一位是空格）”，接下来10 00 00 00，4个字节long int类型，表示fmt区块大小0x10，接下来01 00,2个字节int型，0x01为PCM编码，接下来02 00,2个字节int型，表示声道数目，在接下来44 AC 00 00 ，4个字节int型表示采样频率为0Xac44,……，到地址为0x0000 0024~27，4个字节64 61 74 61,char型表示“data”，后面的0x0000 0028~0x0000 002B地址为48 FE 83 01 ，long int型，表示声音数据量为0x0183FE48。接下来就是用PCM编码的声音数据了。</p>
+<h3 id="三、MP3文件"><a href="#三、MP3文件" class="headerlink" title="三、MP3文件"></a>三、MP3文件</h3><p>MP3文件是压缩算法压缩后得到的（起码去掉了人耳听不到的高频部分），MP3文件包括三个部分，ID3V2（可选，为ID3V1的补充）+音频数据+ID3V1（歌曲的其他信息），音频数据由一系列数据帧组成，每个数据帧包含一段音频的压缩数据，需要解码得到对应 PCM 音频数据，就可以通过 I2S 发送到 WM8978 芯片播放音乐，按顺序解码所有帧就可以得到整个 MP3 文件的音轨。每各数据帧两部分组成，帧头和数据实体，帧头4个字节，数据帧长度取决于位率和采样频率，一般来说一个 MP3 文件每个帧的位率是固定不变的，所以每个帧都有相同的长度，称为 CBR，还有小部分 MP3 文件的位率是可变，称之为 VBR。<br>.MP3文件帧头4个字节的内容：首先是11位同步信息，全是1；然后是2位表示版本，然后是2位表示层，然后是1位表示是否CRC校验。这里合起来就是2个字节。第3字节是首先4位表示位率，然后2位表示采样频率，然后1位表示帧长调整，最后一位是保留字。第4字节是首先2位表示声道，然后2位是补充模式，然后1位表示版权是否合法，然后1位是原版标志，最后一位是强调方式（不知道是什么鬼，反正几乎不用）。帧头4个字节就这么点内容而已。<br>.MP3文件帧主体数据使用Helix 解码库解码就行了，不管里面的具体数据。而帧头数据可以用来判断是否是每一帧的开头，因为Helix 解码库解码数据是一帧一帧解码的，所以需要判断帧的开头。<br>本程序使用Helix 解码库实现 MP3文件解码，Helix 解码库是用来解码 MP3 数据帧，不能用来检索 ID3V1 和 ID3V2标签的，一次解码一帧。</p>
+<h3 id="四、播放音频详细流程"><a href="#四、播放音频详细流程" class="headerlink" title="四、播放音频详细流程"></a>四、播放音频详细流程</h3><p>首先需要弄几个内存缓冲区来保存临时数据还有定义几个flag和几个指针来指向缓冲区的数据，<br>一、输入缓冲区uint8_t inputbuf[INPUTBUF_SIZE这个实际上宏定义为3000]={0};/<em> 解码输入缓冲区，1940字节为最大MP3帧大小  </em>/<br>二、输出缓冲区outbuffer，也是I2S输入数据：static short outbuffer[2][MP3BUFFER_SIZE这个实际上宏定义为2304];  处理立体声音频数据时，输出缓冲区需要的最大大小为2304<em>16/8字节(16为PCM数据为16位)，这个输出缓冲区分为两个（所以使用2维数组），定义一个static uint8_t bufflag=0来表示数据缓存区选择标志。bufflag 用于指示当前 DMA 传输的缓冲区号， Isread 用于指示 DMA 传输完成（下面说了，懒得改）。定义一个read_ptr指针初始化为指向inputbuff输入缓冲区首地址，定义read_offset 用来指示帧同步相对解码器源数据缓冲区首地址的偏移量， bytes_left 用于指示解码器源数据缓冲区有效数据量<br>三、static uint8_t Isread=0; /</em> DMA传输完成标志 <em>/<br>四、填充Helix 解码库中的mp3player结构体（音量就在此定义）<br>五、打开（而不是读取）SD卡中的指定音频文件，使用file指针指向它，使用f_open函数之后才能使用f_read函数读取数据。<br>六、初始化mp3解码器（在Helix解码库中，直接调用库函数即可）<br>七、复位wm8978，把它的寄存器全部复位初始化为零，有库函数<br>八、配置WM8978芯片，输入为DAC，输出为耳机，有库函数<br>九、调节音量，左右相同音量，有库函数<br>十、配置WM8978音频接口为飞利浦标准I2S接口，16bit，有库函数<br>十一、初始化并配置I2S（5个引脚上面说了）。首先关闭I2S2TX和RX的DMA传输，然后在AHB1中开启wm8978的引脚时钟WM8978_LRC_GPIO_CLK为RCC_AHB1Periph_GPIOB等等（5个引脚），然后配置wm8978的GPIO引脚（5个引脚），然后引脚复用功能连接（5个引脚）。I2S的模式配置要与wm8978一样，同样是 I2S Philips 标准（第一个参数）和 16bit 数据长度（第二个参数），采样频率（第三个参数）先使用 I2S_AudioFreq_Default，在运行 MP3GetLastFrameInfo 函数获取数据帧的采样频率后需要再次修改。<br>十二、然后在这里调用一个DMA发送完成中断回调函数（这个主要在中断服务函数中调用，在这里调用玩一下），表示缓冲区内容已经播放完成，需要切换缓冲区，进行新缓冲区内容播放，判断如果当前使用Memory1数据，则将数据读取到缓冲区0，如果当前使用Memory0数据，则将数据读取到缓冲区1，最后设置DMA传输完成标志Isread=1。<br>十三、用于初始化 I2S 的 DMA 发送请求，使用双缓冲区模式。I2Sx_TX_DMA_Init（）参数为(uint16_t </em>)outbuffer[0]输出缓冲区的其中一个,(uint16_t *)outbuffer[1] 输出缓冲区的另一个,MP3BUFFER_SIZE这个是之前宏定义的输出缓冲区的每个的大小。在这个函数里面，首先在AHB1中RCC_AHB1Periph_DMA1时钟使能，然后DMA_DeInit 函数将数据流复位到缺省配置状态,然后等待DMA1_Stream4可配置，然后清空DMA1_Stream4上所有中断标志，这几个是套路，然后就是配置DMA Stream，配置DMA从第一个缓冲区到wm8978I2S的数据寄存器，外设非增量，存储器增量模式，外设数据长度16位，存储器数据长度16位，配置、开启双缓冲模式（使用 DMA 的双缓冲区模式，就是开辟两个缓冲区空间，当第一个缓冲区用于DMA 传输时(不占用 CPU)， CPU 可以往第二个缓冲区填充数据，等到第一个缓冲区 DMA传输完成后切换第二个缓冲区用于 DMA 传输， CPU 往第一个缓冲区填充数据，如此不断循环切换，可以达到 DMA 数据传输不间断效果），开启I2Sx_TX_DMA传输完成中断，使能SPI2 TX DMA，配置使能I2Sx_TX_DMA中断。（十三这个I2Sx_TX_DMA_Init（）函数只有开启第一个缓冲区到I2S的DMA数据传输，那么第二个呢？对了其实前面那句也不准确，这个函数是开启第一个参数到I2S的DMA传输，我们在传递进这个函数的第一个参数可以不是第一个缓冲区而可以是第二个缓冲区。错！！！双缓冲模式：设置 DMA_SxCR 寄存器的 DBM 位为 1 可启动双缓冲传输模式，并自动激活循环模式。双缓冲不应用与存储器到存储器的传输。双缓冲模式下，两个存储器地址指针都有效，即 DMA_SxM1AR 寄存器将被激活使用。开始传输使用 DMA_SxM0AR 寄存器的地址指针所对应的存储区，当这个存储区数据传输完 DMA 控制器会自动切换至DMA_SxM1AR 寄存器的地址指针所对应的另一块存储区，如果这一块也传输完成就再切换至 DMA_SxM0AR 寄存器的地址指针所对应的存储区，这样循环调用。当其中一个存储区传输完成时都会把传输完成中断标志 TCIF 位置 1，如果使能了DMA_SxCR 寄存器的传输完成中断，则可以产生中断信号。另外一个非常有用的信息是 DMA_SxCR 寄存器的 CT 位，当 DMA 控制器是在访问使用DMA_SxM0AR 时 CT=0，此时 CPU 不能访问 DMA_SxM0AR，但可以向 DMA_SxM1AR填充或者读取数据；当 DMA 控制器是在访问使用 DMA_SxM1AR 时 CT=1，此时 CPU 不能访问 DMA_SxM1AR，但可以向 DMA_SxM0AR 填充或者读取数据。另外在未使能DMA 数据流传输时，可以直接写 CT 位，改变开始传输的目标存储区。）<br>十四、补充一下中断服务函数，DMA传输完成时产生中断，这时候清DMA传输完成标志，执行十二说到的回调函数<br>十五、bufflag=0;Isread=0;<br>十六、进入放音状态mp3player.ucStatus = STA_PLAYING;<br>十七、f_read读取指定的mp3文件，参数为文件对象指针+存放读取出来的数据的缓冲区首地址+欲读取数据的字节数+32位无符号整型指针（使用fnum变量地址赋值给他，在运行读写操作函数后， fnum 变量指示成功读取的字节个数），实际参数为指定的文件指针+ inputbuf这个指针+ INPUTBUF_SIZE也就是3000+ &amp;bw，也就是从文件中读取3000个字符到inputbuf指针，然后read_ptr=inputbuf，再然后bytes_left=bw。然后进入while循环。<br>十八、while（mp3player.ucStatus == STA_PLAYING）循环：<br>首先使用Helix解码库函数寻找帧同步read_offset = MP3FindSyncWord(read_ptr, bytes_left); 返回第一个同步字的位置。没有找到就再从新读取文件重新来。然后偏移至同步字的位置read_ptr += read_offset;然后同步字之后的数据大小bytes_left -= read_offset;<br>然后采用的是DMA读取，所以一定要4字节对齐，所以这里补充数据。补充数据这里结果是使得inbuff整个缓冲区全部填充了数据，这里特别重要！！！首先，要说明的是，在同步字之前，read_ptr=inputbuf;bytes_left=bw;也就是read_ptr指向缓冲区首地址，然后bytes_left的值为读取的数据的个数，这里其实也等于缓冲区的长度！然后同步字之后，read_ptr += read_offset; read_ptr偏移至同步字的位置，bytes_left -= read_offset; bytes_left的值减少了一些，仍然表示数据的个数（不是缓冲区长度了）！然后就是判断bytes_left是否是4字节对齐，使用&amp;3位运算，在草稿纸上试一下就知道为什么可以这样了！然后i=(uint32_t)(bytes_left)&3; //判断多余的字节if(i) i=4-i;//需要补充的字节memcpy(inputbuf+i, read_ptr, bytes_left);    //从对齐位置开始复制   注意好好理解这段内存赋值，这三个语句就使得数据对齐，我觉得这里需要画图，等于是把中间的数据拖到前面，并且补充成4字节对齐的数据，当然在bytes_left个数据之后的数据是垃圾，然后再用f_read函数把mp3文件的数据填充到bytes_left个数据之后直到整个inbuff缓冲区填满（这样子，就能实现DMA四字节对齐并且不遗漏MP3文件的信息，那么如果不使用i=(uint32_t)(bytes_left)&3; //判断多余的字节if(i) i=4-i;//需要补充的字节memcpy(inputbuf+i, read_ptr, bytes_left)会怎么样？还有DMA传输是outbuff传输到wm8978，为何是在inbuff部分进行4字节对齐？对了对了！！！！！如果直接从MP3文件中读取数据放到inbuff然后交给解码器解码，把inbuff解码成outbuff是不行的！！！！因为MP3文件还包括其他部分然后才是音频数据，解码器解码只能解码MP3文件的音频数据（包括帧头和主体），所以需要先定位帧头，帧头后面的东西才可以给解码器解码，并且需要数据量够，要是定位帧头之后，指针指向的位置已经在inbuff的末尾了那数据量就太少了，所以在这里把数据从inbuff末尾转移到前面（话说这是为了4字节对齐把），转移之后，bytes_left有效数据之后的数据都是垃圾，所以使用f_read补充在bytes_left个有效数据之后再补充有效数据）<br>然后开始解码。使用Helix解码库函数参数：mp3解码结构体、输入流指针、输入流大小、输出流指针、数据格式。实际参数为，（Mp3Decoder, &amp;read_ptr, &amp;bytes_left, outbuffer[bufflag], 0）这里的输出流指针是outbuffer[bufflag]！解码后输出 PCM 数据就保存在这个outbuffer[bufflag]    里面。Bufflag在DMA传输完成中断服务函数里面切换。解码完毕。<br>然后检测错误。如果无误，则获取解码信息，根据解码信息设置采样率修改修改I2S速率（之前已经说过了）。<br>然后启动DMA，其实也就是打开I2Sx_TX_DMA_STREAM也就是DMA1_Stream4。<br>然后判断是否MP3文件读取完毕，读取完毕则退出while大循环。（注意整个函数只有这里这个break可以退出while大循环）<br>然后while(Isread==0){} Isread=0; 如果DMA还没处理完一帧，就在这里死循环直到处理完一帧，也就是上一层的while函数，进入一次就处理一帧。<br>执行完上面那条语句之后，这一帧就搞定了同时退出while大循环，结束DMA传输I2S_Stop();并且mp3player.ucStatus=STA_IDLE;MP3FreeDecoder(Mp3Decoder);f_close(&amp;file);结束</p>
+<h3 id="五、总流程"><a href="#五、总流程" class="headerlink" title="五、总流程"></a>五、总流程</h3><p>一、初始化部分：<br>设置中断优先级组2<br>初始化串口1（具体在下面）<br>挂载文件系统（具体在下面）<br>初始化系统滴答定时器（具体在下面）<br>初始化wm8978包括GPIO、I2C（具体在下面）<br>二、播放指定的一个.mp3文件：（具体在上面）</p>
+<h3 id="六、MP3串口调试"><a href="#六、MP3串口调试" class="headerlink" title="六、MP3串口调试"></a>六、MP3串口调试</h3><p>一、开启时钟：<br>开启USART1的GPIO时钟（端口时钟），TX为PA9，即开启RCC_AHB1Periph_GPIOA时钟，RX为PA10同样的开启RCC_AHB1Periph_GPIOA时钟。（GPIOA时钟位于AHB1中）<br>开启USART1时钟，也就是开启RCC_APB2Periph_USART1时钟。（USART1时钟位于AHB1中，所以与上面开启端口时钟使用不同库函数）<br>二、引脚复用功能连接：<br>连接PA9到串口1TX，PA10到串口1RX。用GPIO_PinAFConfig（）库函数，三个参数，例如连接 PA9 到串口1_Tx，三个参数为GPIOA+GPIO_PinSource10+GPIO_AF_USART1。<br>三、GPIO初始化：<br>不设置输入输出模式，总设置推挽、上拉、速率50MHZ，分设置TXPA9引脚为复用功能，分设置RXPA10引脚为复用功能。<br>四、配置串口1模式<br>设定波特率115200， 8个数据位、不用校验、一位停止位、不使用硬件流、USART模式控制：同时使能接收和发送。<br>（没有这一步，仅在main开头就设置中断优先级组为2。因为这个程序并不需要发送或者接收中断）五、配置中断：<br>配置：中断优先级组设置为2，配置USART为中断源也就是USART1_IRQn这个值，抢断优先级为1，子优先级为1，最后一步使能中断。<br>使能串口接收中断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USART_ITConfig（）</span><br></pre></td></tr></table></figure>
+<p>参数USART1+ USART_IT_RXNE+ ENABLE。<br>六、使能串口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USART_Cmd(USART1, ENABLE);</span><br></pre></td></tr></table></figure>
+<p>七、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USART_ClearFlag(DEBUG_USART, USART_FLAG_TC);</span><br></pre></td></tr></table></figure>
+<h3 id="七、文件系统"><a href="#七、文件系统" class="headerlink" title="七、文件系统"></a>七、文件系统</h3><p>FatFs文件系统有现成的库函数可以调用。挂载文件系统可以使用f_mount()，参数是指向 FATFS变量指针（如果赋值为 NULL 可以取消物理设备挂载）+ 逻辑设备编号（定义 SD 卡物理编号为 0）+ 0或1（1 表示立即挂载， 0 表示延迟挂载）。使用 f_open（） 函数打开文件，参数是文件对象指针+目标文件字符串包括绝对路径和后缀+模式（打开已经存在的文件模式、读模式、写模式、新建模式、总是新建模式等的或运行结果。比如对于写测试，使用 FA_CREATE_ALWAYS 和 FA_WRITE 组合模式，就是总是新建文件并进行写模式。），使用 f_close （）函数关闭文件，参数是文件对象指针。使用 f_open（） 函数打开文件之后就可以使用f_read（）函数读取文件，参数是文件对象指针+存放读取出来的数据的缓冲区首地址+欲读取数据的字节数+32位无符号整型指针（使用fnum变量地址赋值给他，在运行读写操作函数后， fnum 变量指示成功读取或者写入<br>的字节个数）。最后，不再使用文件系统时，使用 f_mount （）函数取消挂载。</p>
+<h3 id="八、SD卡："><a href="#八、SD卡：" class="headerlink" title="八、SD卡："></a>八、SD卡：</h3><p>本程序使用SDIO接口连接SD卡与STM32，CLK时钟线由STM32输出。CMD命令控制线，STM32通过该线发送命令控制SD卡，应答信号也是从这条线发出来的。D0~D3是数据线，传输读写数据，将D0拉低表示忙状态。剩下3条是电源和地信号。<br>SD通讯由一个起始位(0)，由一个停止位(1)终止。<br>SD数据是以块形式传输的，块长度为512字节，数据块需要用CRC位保证，该位是硬件生成的。<br>SD 命令格式固定为 48bit，都是通过 CMD 线连续传输的，<br>组成：起始位0+传输标志（用于区分传输方向，该位为 1 时表示命令，方向为主机传输到 SD卡，该位为0时表示响应，方向为SD卡传输到主机。）+命令主体（包括命令、地址信息/参数和 CRC 校验三个部分）+终止位1.<br>有个命令表，需要实现什么功能再去查命令表，然后主控板编码命令再打包控制引脚发送给SD芯片即可实现对应功能。</p>
+<h3 id="九、初始化系统滴答定时器"><a href="#九、初始化系统滴答定时器" class="headerlink" title="九、初始化系统滴答定时器"></a>九、初始化系统滴答定时器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SysTick_Config(SystemCoreClock / 100000)</span><br></pre></td></tr></table></figure>
+<p>10us中断一次，且已经在这个函数里面已经开启定时器中断</p>
+<h3 id="十、初始化wm8978："><a href="#十、初始化wm8978：" class="headerlink" title="十、初始化wm8978："></a>十、初始化wm8978：</h3><p>一、开启I2C时钟，在APB1下开RCC_APB1Periph_I2C1时钟，在AHB1下开启SCL的GPIO时钟也就是RCC_AHB1Periph_GPIOB时钟，在AHB1下开启SDA的GPIO时钟同样是RCC_AHB1Periph_GPIOB时钟，在APB2下开启RCC_APB2Periph_SYSCFG时钟（这个时钟是干嘛用的？）<br>二、引脚复用功能连接<br>scl:GPIOB+ GPIO_PinSource6+ GPIO_AF_I2C1<br>sda: GPIOB+ GPIO_PinSource6+GPIO_AF_I2C1<br>B6、B7的GPIO初始化<br>配置I2C1模式+使能I2C1<br>I2C_AcknowledgeConfig(WM8978_I2C, ENABLE);（这一步是干嘛用的）<br>硬件复位WM8978所有寄存器到缺省状态</p>
+<h3 id="十一、WM8978-芯片"><a href="#十一、WM8978-芯片" class="headerlink" title="十一、WM8978 芯片"></a>十一、WM8978 芯片</h3><p>WM8978 芯片是一个音频编译码器，但本身没有保存音频数据功能，它只能接收其它设备传输过来的音频数据进行转换输出到扬声器。该芯片与其他设备进行音频数据传输接口就是 I2S 协议的音频接口。</p>
+<p>I2S总线接口：半双工传输，3个主要信号<br>SD数据线映射到SPI的MOSI引脚，WS表明当前传输数据的声道映射到SPI的NSS引脚，CK位时钟线映射到SPI的SCK引脚<br>但是在本程序中使用5条线，除了3个主要信号，再加上MCK主时钟线和扩展串行数据线</p>
+<p>音频数据传输协议标准使用I2S Philips 标准、<br>使用 WS 信号来指示当前正在发送的数据所属的通道，为 0 时表示左通道数据<br>I2S 有一个与 SPI 共用的 SPI 数据寄存器(SPI_DR)，有效长度为 16bit，用于 I2S 数据发送和接收，它实际由三个部分组成，一个移位寄存器、一个发送缓冲区和一个接收缓冲区，当处于发送模式时，向 SPI_DR 写入数据先保存在发送缓冲区，总线自动把发送缓冲区内容转入到移位寄存器中进行传输；在接收模式下，实际接收到的数据先填充移位寄存器，然后自动转入接收缓冲区，软件读取 SPI_DR 时自动从接收缓冲区内读取。 I2S 挂载在 APB1 总线上。<br>STM32f42x 系列控制器 I2S 的数据寄存器只有 16bit。</p>
+<p>使用I2C通信方式连接wm8978的两个接口，进而访问、控制wm8978的寄存器，wm8978的寄存器为16位，15~9位是寄存器地址，0~8是有意义的。</p>
+<h3 id="十二、I2S配置"><a href="#十二、I2S配置" class="headerlink" title="十二、I2S配置"></a>十二、I2S配置</h3><p>配置使用发送模式（播放声音时），I2S Philips标准，对应16bit数据选择16或32bit帧长度，本程序使用16bit，使能主时钟输出，采样频率默认2HZ，空闲状态的CK线电平随便高低都行。</p>
+<h3 id="十三、关于实现实时播放任意音频的想法"><a href="#十三、关于实现实时播放任意音频的想法" class="headerlink" title="十三、关于实现实时播放任意音频的想法"></a>十三、关于实现实时播放任意音频的想法</h3><p>关于“不需要事先录制好音频，直接在盲人行走的时候想播放什么音频就播放什么音频”这个功能的思路，现在有思路，不过还没做：<br>目前只能通过采集实际的声音，将声音这个模拟量转化为数字量保存起来，直接修改这些数字量成发出我想要的声音数据，这个不太实际，我认为可能只有专业的人才能做到。所以，做到实时发出声音，不太可能。不过有一种方式，就是我将声音的字符形式发送到电脑端，电脑端将字符转化为.wav格式文件（这部分已经有现成的软件），只要能将.wav格式文件发送到我的主控板SD卡中就好（虽然能用读卡器将.wav文件拖进SD卡中，但是这样必须连线也不能自动进行），所以我打算使用wifi模块（无线，且应该能传输文件数据，虽然我还没学），只要能将.wav格式文件发送到我的主控板SD卡中就好。这样就能实现不需要事先录制好音频，直接在盲人行走的时候想播放什么音频就播放什么音频。不过可能有缺陷就是，利用wifi传输.wav文件需要时间，不知这个时间会不会太长。还有一点，这样子盲人在走路的时候还得带台电脑，电脑这部分可能无法用stm32做到。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://Kie-Willis.github.io/2018/04/16/音频模块技术文档/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/12/kie/" class="archive-article-date">
-  	<time datetime="2018-04-12T05:10:46.218Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/12/kie/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kie</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/12/kie/">kie</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/12/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-12T04:07:51.684Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/12/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -276,8 +423,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
