@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://Kie-Willis.github.io">
-  <title>Archives | 原生态丶领跑</title>
+  <title>为何不在systick里面进行任务调度而是在pendSV中断里 | 原生态丶领跑</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="雪山、川藏、麦理浩径">
-<meta property="og:type" content="website">
-<meta property="og:title" content="原生态丶领跑">
-<meta property="og:url" content="http://Kie-Willis.github.io/archives/index.html">
+  <meta name="description" content="为何不在systick里面进行任务调度，而是pendSV？不只是因为任务调度不仅仅在systick的时候进行，还有退出中断、任务暂时放弃cpu使用权用户调用api，因为有多种情况，才不在systick里面进行任务调度把？权威指南7.6好像有稍微提到这个，但是就是看不懂。猜测: 参考权威指南7.6：两个任务间通过 SysTick 进行轮转调度的简单模式 。 1若在产生 SysTick 异常时正在响应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为何不在systick里面进行任务调度而是在pendSV中断里">
+<meta property="og:url" content="http://Kie-Willis.github.io/2018/04/19/为何不在systick里面进行任务调度而是在pendSV中断里/index.html">
 <meta property="og:site_name" content="原生态丶领跑">
-<meta property="og:description" content="雪山、川藏、麦理浩径">
+<meta property="og:description" content="为何不在systick里面进行任务调度，而是pendSV？不只是因为任务调度不仅仅在systick的时候进行，还有退出中断、任务暂时放弃cpu使用权用户调用api，因为有多种情况，才不在systick里面进行任务调度把？权威指南7.6好像有稍微提到这个，但是就是看不懂。猜测: 参考权威指南7.6：两个任务间通过 SysTick 进行轮转调度的简单模式 。 1若在产生 SysTick 异常时正在响应">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-19T02:56:55.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原生态丶领跑">
-<meta name="twitter:description" content="雪山、川藏、麦理浩径">
+<meta name="twitter:title" content="为何不在systick里面进行任务调度而是在pendSV中断里">
+<meta name="twitter:description" content="为何不在systick里面进行任务调度，而是pendSV？不只是因为任务调度不仅仅在systick的时候进行，还有退出中断、任务暂时放弃cpu使用权用户调用api，因为有多种情况，才不在systick里面进行任务调度把？权威指南7.6好像有稍微提到这个，但是就是看不懂。猜测: 参考权威指南7.6：两个任务间通过 SysTick 进行轮转调度的简单模式 。 1若在产生 SysTick 异常时正在响应">
   
     <link rel="alternative" href="/atom.xml" title="原生态丶领跑" type="application/atom+xml">
   
@@ -157,157 +158,159 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-为何不在systick里面进行任务调度而是在pendSV中断里" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      为何不在systick里面进行任务调度而是在pendSV中断里
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/19/为何不在systick里面进行任务调度而是在pendSV中断里/" class="archive-article-date">
+
+        
+        <a href="/2018/04/19/为何不在systick里面进行任务调度而是在pendSV中断里/" class="archive-article-date">
   	<time datetime="2018-04-19T02:52:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/19/为何不在systick里面进行任务调度而是在pendSV中断里/">为何不在systick里面进行任务调度而是在pendSV中断里</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为何不在systick里面进行任务调度，而是pendSV？<br>不只是因为任务调度不仅仅在systick的时候进行，还有退出中断、任务暂时放弃cpu使用权用户调用api，因为有多种情况，才不在systick里面进行任务调度把？权威指南7.6好像有稍微提到这个，但是就是看不懂。<br>猜测:</p>
+<p>参考权威指南7.6：两个任务间通过 SysTick 进行轮转调度的简单模式 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">若在产生 SysTick 异常时正在响应一个中断，则SysTick 异常会抢占其 ISR。在这种情况下， OS 是不能执行上下文切换的，否则将使中断请求被延迟，而且在真实系统中延迟时间还往往不可预知——任何有一丁点实时要求的系统都决不能容忍这种事。</span><br></pre></td></tr></table></figure>
+<p>上面这句话的意思我的理解是，若在进行任务A的时候，产生一个中断，这个中断在进行的过程中，又产生 SysTick 异常，这时候，SysTick 异常结束之后，就切换到任务B，而不是接着刚才的中断。也就是说，正确的情况应该是不进行任务B，而是继续IRQ，因为不管怎么说，中断都比任务来的重要，SYStick在中断里面是最重要的，但是所有中断都是比任务还要重要的（我的不严谨的理解)。所以若由SYStick进行任务切换，则可能造成其他中断延迟，所以使用pendSV进行任务切换。</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://Kie-Willis.github.io/2018/04/19/为何不在systick里面进行任务调度而是在pendSV中断里/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/17/hexo笔记/" class="archive-article-date">
-  	<time datetime="2018-04-17T05:54:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-17</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/17/hexo笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/17/hexo笔记/">hexo笔记</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/16/音频模块技术文档/" class="archive-article-date">
-  	<time datetime="2018-04-16T05:19:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/16/音频模块技术文档/">音频模块技术文档</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/12/kie/" class="archive-article-date">
-  	<time datetime="2018-04-12T05:10:46.218Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/12/kie/">kie</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/12/hello-world/" class="archive-article-date">
-  	<time datetime="2018-04-12T04:07:51.684Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -330,8 +333,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
